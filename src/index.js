@@ -2,8 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
    images () 
     dogs () 
-  
-
+    
+})
 
   function images ()  {
     const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
@@ -36,12 +36,17 @@ function dogs() {
        
 // when user clicks on any <li> the font color will change
 
-const l = document.getElementById('dog-breeds')
-const li = document. querySelectorAll('li')
-l.addEventListener('click', () => {
- 
- l.style.color = 'yellow'
-})
+  let lol = document.querySelector('li')
+  lol.addEventListener('click', (e) => {
+    console.log(e.target)
 
 
-})
+
+  })
+      
+
+    
+
+
+
+
