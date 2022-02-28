@@ -1,22 +1,28 @@
 
 document.addEventListener("DOMContentLoaded", () => {
    images () 
-    dogs () 
+    dogs ()
+    
     
 let dropdown = document.getElementById('breed-dropdown')
-let doggo = document.getElementById('dog-breeds')
 dropdown.addEventListener('change', (e) => {
   matchingBreeds(e.target.value)
+  
 })
+
+
+
  function matchingBreeds(letter) {
-   console.log(dogArr)
+  // matchingBreeds() => Letter that i choose on drop down is what is being returned
+   const filteredDogs = dogArr.filter((breed) => {
+     return breed.startsWith(letter)
+  
+  })
 
-console.log("This is my", letter)
-// filter over dogArr, return all the elements that startWith() the specific letter
 
+breeders(filteredDogs)
+  }
 
-
- }
 let dogArr = []
 
   function images ()  {
@@ -38,16 +44,17 @@ function dogs() {
   const breedUrl = 'https://dog.ceo/api/breeds/list/all'
   fetch(breedUrl)
   .then(resp => resp.json())
-  .then (data => breeders(data))
-}
-  function breeders(data) {
-    
+  .then (data => {
     dogArr = Object.keys(data.message)
-  
-      for(let p in data.message) {
-      let dogId = document.getElementById('dog-breeds') 
+    breeders(dogArr)
+  })
+}
+  function breeders(dogArr) {
+    let dogId = document.getElementById('dog-breeds')
+    dogId.innerHTML = ""
+      for(let dog of dogArr) {
       let li = document.createElement('li')
-      li.innerText = p
+      li.innerText = dog
       dogId.appendChild(li)
       li.style.cursor = 'pointer'
       li.addEventListener('click', color)
@@ -56,11 +63,5 @@ function dogs() {
        function color(event) {
 event.target.style.color = 'Blue'
   }
-
-
-  
-
-
-
 })
 
